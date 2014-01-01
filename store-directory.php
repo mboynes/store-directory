@@ -2,7 +2,7 @@
 
 /*
 	Plugin Name: Store Directory
-	Plugin URI: http://boyn.es/store-directory/
+	Plugin URI: https://github.com/mboynes/store-directory
 	Description: A simple plugin for keeping a store directory
 	Version: 0.1
 	Author: Matthew Boynes
