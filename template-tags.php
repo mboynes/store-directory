@@ -14,7 +14,12 @@ function wpsd_the_store_search_form() {
 			<label for="sd_radius"><?php _e( 'Radius', 'store-directory' ); ?>
 			<select name="sd_radius" id="sd_radius">
 				<?php foreach ( $options as $radius ) : ?>
-					<option value="<?php echo absint( $radius ); ?>"<?php selected( $radius, get_query_var( 'sd_radius' ) ); ?>><?php printf( _n( '%d Mile', '%d Miles', $radius, 'store-directory' ), $radius ); ?></option>
+					<option value="<?php echo absint( $radius ); ?>"<?php selected( $radius, get_query_var( 'sd_radius' ) ); ?>>
+						<?php if ( 'miles' == WPSD_Post_Type()->units )
+							printf( _n( '%d mile', '%d miles', $radius, 'store-directory' ), $radius );
+						else
+							printf( _n( '%d km', '%d km', $radius, 'store-directory' ), $radius ); ?>
+					</option>
 				<?php endforeach ?>
 			</select>
 		</p>

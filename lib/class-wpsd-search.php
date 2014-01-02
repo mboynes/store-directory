@@ -73,10 +73,11 @@ class WPSD_Search {
 			$fields .= $wpdb->prepare( ",
 				lat.meta_value AS `latitude`,
 				long.meta_value AS `longitude`,
-				( 3959 * acos( cos( radians('%1\$s') ) * cos( radians( lat.meta_value ) ) * cos( radians( long.meta_value ) - radians('%2\$s') ) + sin( radians('%1\$s') ) * sin( radians( lat.meta_value ) ) ) ) AS `distance`
+				( %3\$d * acos( cos( radians('%1\$s') ) * cos( radians( lat.meta_value ) ) * cos( radians( long.meta_value ) - radians('%2\$s') ) + sin( radians('%1\$s') ) * sin( radians( lat.meta_value ) ) ) ) AS `distance`
 				",
 				$this->lat,
-				$this->long
+				$this->long,
+				( 'miles' == WPSD_Post_Type()->units ? 3959 : 6371 ) # radius of the earth
 			);
 		}
 		return $fields;

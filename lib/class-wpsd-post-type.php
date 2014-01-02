@@ -12,6 +12,8 @@ class WPSD_Post_Type {
 
 	public $post_type = 'store';
 
+	public $units = 'miles';
+
 	private function __construct() {
 		/* Don't do anything, needs to be initialized via instance() method */
 	}
