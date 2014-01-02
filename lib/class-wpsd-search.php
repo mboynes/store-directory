@@ -124,10 +124,16 @@ class WPSD_Search {
 	}
 
 	public function add_map( $query ) {
-		if ( $this->doing_wpsd_search( $query ) ) :
+		if ( $query->is_main_query() && $query->is_post_type_archive( WPSD_Post_Type()->post_type ) ) {
 			$posts = array_map( array( $this, 'get_mappable_data' ), $query->posts );
-			wpsd_the_map( $posts, $this->lat, $this->long );
-		endif;
+			if ( $this->lat && $this->long ) {
+				# If we have a search point, center the map around it
+				wpsd_the_map( $posts, $this->lat, $this->long );
+			} else {
+				# Otherwise, center the map around the first post
+				wpsd_the_map( $posts, $query->posts[0]->latitude, $query->posts[0]->longitude );
+			}
+		}
 	}
 }
 
