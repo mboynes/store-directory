@@ -70,7 +70,7 @@ Param:  `array(
 
 Param: `true`
 
-By default, a Google Map is added to the store archive views using the `'loop_start'` action. This may not be desirable in all circumstances. To disable it, add `add_filter( 'wpsd_automap', '__return_false' )` to your theme or plugin. If you choose to disable this, see the `wpsd_the_map()` tempalte tag to manually display the map.
+By default, a Google Map is added to the store archive views and store singular views using the `'loop_start'` action. This may not be desirable in all circumstances, especially if you loop through your posts multiple times. To disable this, add `add_filter( 'wpsd_automap', '__return_false' )` to your theme or plugin. If you choose to disable this, see the `wpsd_the_map()` tempalte tag to manually display the map.
 
 == Template Tags ==
 
