@@ -53,9 +53,13 @@ class WPSD_Search {
 
 	public function pre_get_posts( $query ) {
 		if ( $query->is_main_query() && $query->is_post_type_archive( WPSD_Post_Type()->post_type ) ) {
-			$this->lat    = get_query_var( 'sd_lat' );
-			$this->long   = get_query_var( 'sd_lng' );
-			$this->radius = get_query_var( 'sd_radius' );
+			$this->lat    = floatval( get_query_var( 'sd_lat' ) );
+			$this->long   = floatval( get_query_var( 'sd_lng' ) );
+			$this->radius = intval( get_query_var( 'sd_radius' ) );
+			if ( ! in_array( $this->radius, wpsd_radius_options() ) ) {
+				$this->radius = 5;
+			}
+
 			if ( $this->lat && $this->long && $this->radius ) {
 				$query->query_vars['wpsd_search'] = true;
 
