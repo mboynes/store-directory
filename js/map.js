@@ -33,7 +33,6 @@
 		for (var i = 0; i < wpsd_map_data.length; i++) {
 			var name = wpsd_map_data[i].name;
 			var address = wpsd_map_data[i].address;
-			var distance = parseFloat(wpsd_map_data[i].distance);
 			var latlng = new google.maps.LatLng(
 				parseFloat(wpsd_map_data[i].latitude),
 				parseFloat(wpsd_map_data[i].longitude)
