@@ -128,7 +128,7 @@ class WPSD_Search {
 	}
 
 	public function add_map( $query ) {
-		if ( $query->is_main_query() && $query->is_post_type_archive( WPSD_Post_Type()->post_type ) ) {
+		if ( $query->is_main_query() && ( $query->is_post_type_archive( WPSD_Post_Type()->post_type ) || $query->is_singular( WPSD_Post_Type()->post_type ) ) ) {
 			$posts = array_map( array( $this, 'get_mappable_data' ), $query->posts );
 			if ( $this->lat && $this->long ) {
 				# If we have a search point, center the map around it
