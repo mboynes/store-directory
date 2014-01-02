@@ -101,4 +101,3 @@ Beyond the above, pretty much everything in this plugin is modifiable by editing
 
 * To change the post type, e.g. to be `'location'` instead of store, you can set it by calling `WPSD_Post_Type()->post_type = 'location';` from your theme or plugin (ideally during `after_setup_theme` at a priority higher than 10).
 * To change the units from miles to kilometers, `WPSD_Post_Type()->units = 'km';`
-*
