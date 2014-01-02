@@ -1,5 +1,9 @@
 (function( $ ) {
 
+	/**
+	 * Some of the following code was influenced by the Google Maps API sample article,
+	 * https://developers.google.com/maps/articles/phpsqlsearch_v3
+	 */
 	var wpsd_map;
 	var wpsd_markers = [];
 	var wpsd_wpsd_info_window;
