@@ -4,11 +4,11 @@
 	var markers = [];
 	var infoWindow;
 
-	function geocode_address( address ) {
+	function geocode_address( address, callback ) {
 		var geocoder = new google.maps.Geocoder();
 		geocoder.geocode({address: address}, function(results, status) {
 			if (status == google.maps.GeocoderStatus.OK) {
-				set_geo_data( results[0].geometry.location );
+				callback( results[0].geometry.location );
 			} else {
 				alert(address + ' not found');
 			}
@@ -66,8 +66,19 @@
 			.val( $('#sd_search').data('idle') );
 	}
 
+	function wpsd_map_admin( location ) {
+		$('#wpsd_map').show();
+		$('#sd_lat').val( location.lat() );
+		$('#sd_lng').val( location.lng() );
+		var marker = new google.maps.Marker({
+		    position: location,
+		    map: new google.maps.Map( document.getElementById('wpsd_map'), { zoom: 17, center: location } )
+		});
+	}
+
 	$(function(){
-		if ( 'undefined' != typeof wpsd_center && wpsd_center.lat && wpsd_center.lng ) {
+		if ( $('#wpsd_map').length && 'undefined' != typeof wpsd_center ) {
+			$('#wpsd_map').show();
 			map = new google.maps.Map(document.getElementById("wpsd_map"), {
 				center: new google.maps.LatLng(wpsd_center.lat, wpsd_center.lng),
 				zoom: 4,
@@ -77,17 +88,29 @@
 			infoWindow = new google.maps.InfoWindow();
 
 			map_locations();
-		} else {
-			$('#wpsd_map').remove();
 		}
 
-		$('#sd_addr').blur(function() {
-			$('#sd_search')
-				.prop( 'disabled', true )
-				.data( 'idle', $('#sd_search').val() )
-				.val( $('#sd_search').data('loading') );
-			geocode_address( $(this).val() );
-		});
+		if ( $('#sd_geolocate').length ) {
+			$('#sd_geolocate').click(function(event) {
+				event.preventDefault();
+				geocode_address( $('#sd_addr').val(), wpsd_map_admin );
+			});
+			if ( $('#sd_lat').val() && $('#sd_lng').val() ) {
+				var location = new google.maps.LatLng(
+					parseFloat( $('#sd_lat').val() ),
+					parseFloat( $('#sd_lng').val() )
+				);
+				wpsd_map_admin( location );
+			}
+		} else if ( $('#sd_addr').length ) {
+			$('#sd_addr').blur(function() {
+				$('#sd_search')
+					.prop( 'disabled', true )
+					.data( 'idle', $('#sd_search').val() )
+					.val( $('#sd_search').data('loading') );
+				geocode_address( $(this).val(), set_geo_data );
+			});
+		}
 	});
 
 })(jQuery);

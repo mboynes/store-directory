@@ -27,7 +27,7 @@ function wpsd_the_store_search_form() {
 
 function wpsd_the_map( $posts, $lat, $long ) {
 	?>
-	<div id="wpsd_map"></div>
+	<div id="wpsd_map" style="display:none"></div>
 	<script type="text/javascript">
 	var wpsd_map_data = <?php echo json_encode( $posts ) ?>;
 	var wpsd_center = { lat: <?php echo floatval( $lat ) ?>, lng: <?php echo floatval( $long ) ?> };

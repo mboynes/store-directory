@@ -95,21 +95,22 @@ class WPSD_Post_Meta {
 
 		?>
 		<p>
-			<label for="wpsd_address"><?php _e( 'Address', 'store-directory' ); ?></label><br />
-			<input type="text" id="wpsd_address" name="wpsd[address]" value="<?php echo esc_attr( $address ); ?>" size="100" />
+			<label for="sd_addr"><?php _e( 'Address', 'store-directory' ); ?></label><br />
+			<input type="text" id="sd_addr" name="wpsd[address]" value="<?php echo esc_attr( $address ); ?>" size="50" />
+			<a href="#" class="button-secondary" id="sd_geolocate"><?php _e( 'Geolocate', 'store-directory' ); ?></a>
 		</p>
 		<p>
 			<label><?php _e( 'Coordinates', 'store-directory' ); ?></label><br />
 			<span class="latlong">
-				<input type="text" id="wpsd_address" name="wpsd[latitude]" value="<?php echo esc_attr( $latitude ); ?>" size="10" />,
-				<label for="wpsd_latitude"><?php _e( 'Latitude', 'store-directory' ); ?></label>
+				<input type="text" id="sd_lat" name="wpsd[latitude]" value="<?php echo esc_attr( $latitude ); ?>" size="10" />,
+				<label for="sd_lat"><?php _e( 'Latitude', 'store-directory' ); ?></label>
 			</span>
 			<span class="latlong">
-				<input type="text" id="wpsd_address" name="wpsd[longitude]" value="<?php echo esc_attr( $longitude ); ?>" size="10" />
-				<label for="wpsd_longitude"><?php _e( 'Longitude', 'store-directory' ); ?></label>
+				<input type="text" id="sd_lng" name="wpsd[longitude]" value="<?php echo esc_attr( $longitude ); ?>" size="10" />
+				<label for="sd_lng"><?php _e( 'Longitude', 'store-directory' ); ?></label>
 			</span>
 		</p>
-		<div class="wpsd_map"></div>
+		<div id="wpsd_map" style="width:100%;height:300px;display:none"></div>
 		<?php
 	}
 

@@ -27,8 +27,13 @@
 define( 'WPSD_PATH', dirname( __FILE__ ) );
 define( 'WPSD_URL', trailingslashit( plugins_url( '', __FILE__ ) ) );
 
-require_once( WPSD_PATH . '/template-tags.php' );
 require_once( WPSD_PATH . '/lib/class-wpsd-post-type.php' );
 require_once( WPSD_PATH . '/lib/class-wpsd-post-meta.php' );
-require_once( WPSD_PATH . '/lib/class-wpsd-search.php' );
 require_once( WPSD_PATH . '/lib/class-wpsd-widget.php' );
+
+if ( ! is_admin() ) {
+	require_once( WPSD_PATH . '/template-tags.php' );
+	require_once( WPSD_PATH . '/lib/class-wpsd-search.php' );
+} else {
+	require_once( WPSD_PATH . '/lib/admin.php' );
+}

@@ -40,8 +40,8 @@ class WPSD_Search {
 	}
 
 	public function scripts() {
-		wp_enqueue_script( 'wpsd_map', WPSD_URL . '/js/map.js', array( 'jquery' ), '1.0', true );
-		wp_enqueue_script( 'wpsd_gmaps', 'http://maps.google.com/maps/api/js?sensor=false', array( 'jquery' ), '1.0', true );
+		wp_enqueue_script( 'wpsd_map', WPSD_URL . '/js/map.js', array( 'jquery', 'wpsd_gmaps' ), '1.0', true );
+		wp_enqueue_script( 'wpsd_gmaps', 'http://maps.google.com/maps/api/js?sensor=false', array(), '1.0', true );
 	}
 
 	public function rewrite_tags() {
