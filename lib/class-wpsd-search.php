@@ -40,7 +40,7 @@ class WPSD_Search {
 	}
 
 	public function scripts() {
-		wp_enqueue_script( 'wpsd_map', WPSD_URL . '/js/map.js', array( 'jquery', 'wpsd_gmaps' ), '1.0', true );
+		wp_enqueue_script( 'wpsd_map', WPSD_URL . 'js/map.js', array( 'jquery', 'wpsd_gmaps' ), '1.1', true );
 		wp_enqueue_script( 'wpsd_gmaps', 'http://maps.google.com/maps/api/js?sensor=false', array(), '1.0', true );
 	}
 
@@ -118,13 +118,13 @@ class WPSD_Search {
 	}
 
 	public function get_mappable_data( $post ) {
-		return array(
+		return apply_filters( 'wpsd_mappable_data', array(
 			'name'      => $post->post_title,
 			'address'   => get_post_meta( $post->ID, 'address', true ),
 			'latitude'  => $post->latitude,
 			'longitude' => $post->longitude,
 			'distance'  => $post->distance
-		);
+		), $post );
 	}
 
 	public function add_map( $query ) {

@@ -35,15 +35,18 @@
 
 		var bounds = new google.maps.LatLngBounds();
 		for (var i = 0; i < wpsd_map_data.length; i++) {
-			var name = wpsd_map_data[i].name;
-			var address = wpsd_map_data[i].address;
 			var latlng = new google.maps.LatLng(
 				parseFloat(wpsd_map_data[i].latitude),
 				parseFloat(wpsd_map_data[i].longitude)
 			);
-
-			wpsd_create_marker(latlng, name, address);
 			bounds.extend(latlng);
+
+			if ( typeof wpsd_custom_create_marker == 'undefined' ) {
+				wpsd_create_marker(latlng, wpsd_map_data[i].name, wpsd_map_data[i].address);
+			} else {
+				// If you define a function, wpsd_custom_create_marker, you can customize the markers
+				wpsd_custom_create_marker(latlng, wpsd_map_data[i]);
+			}
 		}
 		wpsd_map.fitBounds(bounds);
 	}
