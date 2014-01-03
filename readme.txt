@@ -74,6 +74,22 @@ Param: `true`
 
 By default, a Google Map is added to the store archive views and store singular views using the `'loop_start'` action. This may not be desirable in all circumstances, especially if you loop through your posts multiple times. To disable this, add `add_filter( 'wpsd_automap', '__return_false' )` to your theme or plugin. If you choose to disable this, see the `wpsd_the_map()` tempalte tag to manually display the map.
 
+= wpsd_mappable_data =
+
+Param:
+
+`array(
+	'name'      => $post->post_title,
+	'address'   => get_post_meta( $post->ID, 'address', true ),
+	'latitude'  => $post->latitude,
+	'longitude' => $post->longitude,
+	'distance'  => $post->distance
+)`
+
+Param: `$post`
+
+This filter allows you to customize the data used in the map. There is also a javascript "hook" that works in tandem with this, `wpsd_custom_create_marker`. To use the data you pass through the `wpsd_mappable_data` filter, you need to define a javascript function, `wpsd_custom_create_marker( latlng, data )`. This function should take two params, where the first is a `google.maps.LatLng` object and the second is an object with your filtered data. Armed with this data, you can create the marker however you need! See `js/maps.js:wpsd_create_marker()` for an example of how to create a marker.
+
 == Template Tags ==
 
 = wpsd_the_store_search_form() =
