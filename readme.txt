@@ -29,23 +29,25 @@ Brand new plugin. Enjoy!
 
 == Filters ==
 
-=== `wpsd_radius_options` ===
+= wpsd_radius_options =
 
 Param: `array( 5, 10, 25, 50, 100 )`
 
 This filter allows you to modify the options in the radius dropdown in the store search form. Values are in miles by default.
 
-=== `wpsd_register_post_type` ===
+= wpsd_register_post_type =
 
 Param: `true`
 
 This filter allows you to disable the `store` post type altogether. To do so, simply add `add_filter( 'wpsd_register_post_type', '__return_false' )` to your theme or plugin.
 
-=== `wpsd_post_type_args` ===
+= wpsd_post_type_args =
 
 This filter gives you the ability to modify the arguments passed to `register_post_type()` for the 'store' post type. See [register_post_type in the Codex](http://codex.wordpress.org/Function_Reference/register_post_type) for valid arguments and values.
 
-Param:  `array(
+Param:
+
+`array(
 	'public'      => true,
 	'has_archive' => true,
 	'supports'    => array( 'title' ),
@@ -66,7 +68,7 @@ Param:  `array(
 	)
 )`
 
-=== `wpsd_automap` ===
+= wpsd_automap =
 
 Param: `true`
 
@@ -74,11 +76,11 @@ By default, a Google Map is added to the store archive views and store singular 
 
 == Template Tags ==
 
-=== `wpsd_the_store_search_form()` ===
+= wpsd_the_store_search_form() =
 
 Output the store search form. If you choose not to use the provided widget, this lets you add the form wherever you'd like.
 
-=== `wpsd_the_map()` ===
+= wpsd_the_map() =
 
 Param: `$posts` array An array of posts to map. Each entry in the array should contain the following keys:
 
